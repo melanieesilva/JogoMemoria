@@ -1,0 +1,68 @@
+/* O * serve para selecionar todo o documento e seus elementos, definindo propriedades gerais*/
+*{
+    padding: 0;
+    margin: 0; /* Definir margin e padding como zero serve como uma inicialização, um start*/
+    box-sizing: border-box; /*O box-sizing também serve como um tipo de inicialização. Ele serve para definir como a largura (width) e altura
+    (height) de um elemento vai se comportar. Por padrão, o tamanho de um elemento é calculado incluindo padding (distanciamento interno) 
+    e border (borda), o que pode fazer o elemento parecer maior do que ele é. Atribuindo border-box ao box-sizing, é possível solucionar
+    isso. Colocando ele aqui, não é necessário repetir em cada elemento*/
+}
+
+body{
+    background-color: rgb(39, 39, 39);
+    height: 100vh; /*vh significa view height. View está relacionada a viewport, que é a dimensão da tela de um dispositivo. O vh
+    está como 1/100 para a viewport padrão. Ou seja, se a altura da tela é 900px, 1vh é 9px (1% de 900px). O mesmo para vw, que é
+    view width. Se a largura da tela é 1200px, 1vh é o mesmo que 12px. Então 100vh serve para adquirir 100% da height (altura) da
+    viewport (dimensão da tela no navegador). Isso pode ser feito com a largura também*/
+    display: flex; /*Serve para tornar um elemento um flex container, que permite dimensionar elementos filhos em diversas direções
+    e orientações. O display flex pode ser entendido como um atributo que define quem deve orientar os elementos filhos dentro do elemento
+    pai.*/
+}
+
+.jogo_memoria{ /*A classe de uma section, chamada com "."(ponto) + nome da classe*/
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}
+
+.carta_jogo{
+   
+    background-image: url("/jogomemoria/img/img_frente_jogo.jpg");
+    background-size: cover;
+    background-position: center;
+    width: calc(20% - 10px);
+    height: calc(25% - 10px);
+    margin: 5px;
+    position: relative;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    border-radius: 4px;
+}
+
+.carta_jogo:active{
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+
+.carta_jogo.flip{
+    transform: rotateY(180deg);
+}
+
+
+.frente_carta{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 4px;
+    background: #1C7CCC;
+    backface-visibility: hidden;
+}
+
+.frente_carta{
+    transform: rotateY(180deg);
+}
