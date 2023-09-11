@@ -21,7 +21,7 @@ body{
 }
 
 .placar{
-    width: 250px;
+    width: 260px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,6 +92,7 @@ body{
     }
     .placar{
         margin: auto;
+        margin-bottom: 12px;
         align-items: center;
     }
     .placar > h1{
@@ -110,6 +111,37 @@ body{
     .carta_jogo{
         margin: 2px;
         width: calc(30% - 10px); 
+        height: calc(25% - 10px);
+    }
+}
+
+@media (min-width:426px) and (max-width: 768px){
+    body{
+        display: block;
+        height: 100vh;
+        margin: 32px 0px 0px 0px;
+    }
+    .placar{
+        margin: auto;
+        margin-bottom: 12px;
+        align-items: center;
+    }
+    .placar > h1{
+        font-size: 24px;
+    }
+    .placar > p{
+        font-size: 14px;
+    }
+    .jogo_memoria{
+        width: 400px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-content: flex-start;
+    }
+    .carta_jogo{
+        margin: 2px;
+        width: calc(20% - 10px); 
         height: calc(25% - 10px);
     }
 }
