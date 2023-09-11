@@ -102,8 +102,8 @@ body{
         font-size: 14px;
     }
     .jogo_memoria{
-        width: 320px;
-        height: 434px;
+        width: 90vw;
+        height: 90vh;
         display: flex;
         justify-content: center;
         align-content: flex-start;
@@ -111,7 +111,7 @@ body{
     .carta_jogo{
         margin: 2px;
         width: calc(30% - 10px); 
-        height: calc(25% - 10px);
+        height: calc(22% - 10px);
     }
 }
 
@@ -133,8 +133,8 @@ body{
         font-size: 14px;
     }
     .jogo_memoria{
-        width: 400px;
-        height: 400px;
+        width: 90vw;
+        height: 90vh;
         display: flex;
         justify-content: center;
         align-content: flex-start;
@@ -142,6 +142,6 @@ body{
     .carta_jogo{
         margin: 2px;
         width: calc(20% - 10px); 
-        height: calc(25% - 10px);
+        height: calc(30% - 10px);
     }
 }
