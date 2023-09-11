@@ -6,6 +6,7 @@
     (height) de um elemento vai se comportar. Por padrão, o tamanho de um elemento é calculado incluindo padding (distanciamento interno) 
     e border (borda), o que pode fazer o elemento parecer maior do que ele é. Atribuindo border-box ao box-sizing, é possível solucionar
     isso. Colocando ele aqui, não é necessário repetir em cada elemento*/
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body{
@@ -19,24 +20,37 @@ body{
     pai.*/
 }
 
+.placar{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+    color: white;
+}
+.placar > p{
+    margin-top: 12px;
+}
+
+
 .jogo_memoria{ /*A classe de uma section, chamada com "."(ponto) + nome da classe*/
     width: 640px;
     height: 640px;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    perspective: 1000px;
+    margin: auto;   /*Centraliza o elemento horizontalmente na página*/
+    display: flex; 
+    flex-wrap: wrap;    /*Permite uma quebra de linha aos elementos filhos da classe jogo_memoria*/
+    perspective: 1000px; /*Perspective adiciona um efeito 3D ao elemento, permitindo uma sensação de proximidade-distância
+    do elemento em relação ao usuário dependendo do seu tamanho. Quanto menor, maior a sensação de proximidade.*/
 }
 
 .carta_jogo{
-   
-    background-image: url("/jogomemoria/img/img_frente_jogo.jpg");
-    background-size: cover;
+    background-image: url("/img/img_frente_jogo.jpg");
+    background-size: cover;                             /*Editando o background da div que representa uma carta*/
     background-position: center;
-    width: calc(20% - 10px);
-    height: calc(25% - 10px);
+    width: calc(20% - 10px);  /*Utilizando calc() para calcular a width e height da div. Aqui ele entende que a largura deve ser 25% - menos 10px, que será a distância entre as div's.*/
+    height: calc(25% - 10px); /*A medida corresponde ao total de colunas e linhas que são necessárias. Para cinco colunas, cada div deve preencher 25% do espaço disponível. Totalizando 100% do espaço, menos a distância entre os elementos*/
     margin: 5px;
-    position: relative;
+    /* position: relative; */
     transform: scale(1);
     transform-style: preserve-3d;
     transition: transform .5s;
@@ -44,13 +58,15 @@ body{
     border-radius: 4px;
 }
 
-.carta_jogo:active{
-    transform: scale(0.97);
+.carta_jogo:active{ /*Os dois pontos marca o comportamento do elemento quando pressionado (active)*/
+    transform: scale(0.97); /*Transform aplica um efeito 2D ou 3D a um elemento*/
     transition: transform .2s;
+
 }
 
 .carta_jogo.flip{
     transform: rotateY(180deg);
+    
 }
 
 
@@ -58,9 +74,9 @@ body{
     width: 100%;
     height: 100%;
     position: absolute;
-    border-radius: 4px;
     background: #1C7CCC;
     backface-visibility: hidden;
+    border-radius: 4px;
 }
 
 .frente_carta{

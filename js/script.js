@@ -34,6 +34,7 @@ const cartas = document.querySelectorAll('.carta_jogo');
 let cartaVirou = false;
 let bloquearTabuleiro = false;
 let primeiraCarta, segundaCarta;
+let numeroPares = 0;
 
 function virarCarta(){ /*Função que vira uma carta*/
 
@@ -52,9 +53,10 @@ function virarCarta(){ /*Função que vira uma carta*/
 }
 
 function verificarPar(){
-    let parCarta = primeiraCarta.dataset.framework === segundaCarta.dataset.framework
+    let parCarta = primeiraCarta.dataset.imagem === segundaCarta.dataset.imagem
     
-    parCarta ? desativarCarta() : desvirarCarta();  
+    parCarta ? (desativarCarta(),numeroPares++) : desvirarCarta();
+    document.getElementById("contador").textContent = numeroPares;
 }
 
 function desativarCarta(){
