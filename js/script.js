@@ -55,6 +55,12 @@ function verificarPar(){
     
     parCarta ? (desativarCarta(),numeroPares++) : desvirarCarta();
     document.getElementById("contador").textContent = numeroPares;
+
+    if(numeroPares > 9){
+        document.getElementById("vitoria").textContent = "Parabéns! Você encontrou todos os pares."
+    }else{
+        document.getElementById("vitoria").textContent = ""
+    }
 }
 
 function desativarCarta(){

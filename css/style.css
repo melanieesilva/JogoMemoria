@@ -31,6 +31,9 @@ body{
 .placar > p{
     margin-top: 12px;
 }
+.placar > #vitoria{
+    color: rgb(0, 193, 119);
+}
 
 
 .jogo_memoria{ /*A classe de uma section, chamada com "."(ponto) + nome da classe*/
