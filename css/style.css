@@ -53,10 +53,9 @@ body{
     width: calc(20% - 10px);  /*Utilizando calc() para calcular a width e height da div. Aqui ele entende que a largura deve ser 25% - menos 10px, que será a distância entre as div's.*/
     height: calc(25% - 10px); /*A medida corresponde ao total de colunas e linhas que são necessárias. Para cinco colunas, cada div deve preencher 25% do espaço disponível. Totalizando 100% do espaço, menos a distância entre os elementos*/
     margin: 5px;
-    /* position: relative; */
-    transform: scale(1);
-    transform-style: preserve-3d;
-    transition: transform .5s;
+    transform: scale(1); /*Aplica 1 ao scale, a mesma coisa que sem escala/scale*/
+    transform-style: preserve-3d; /*Permite que o elemento e os filhos sejam preservados em um contexto 3D*/
+    transition: transform .5s; /*Adiciona uma transição suave para a transformação*/
     box-shadow: 1px 1px 1px rgba(0,0,0,.3);
     border-radius: 4px;
 }

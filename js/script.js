@@ -72,7 +72,7 @@ function desativarCarta(){
 
 function desvirarCarta(){
     bloquearTabuleiro = true;
-    setTimeout(()=>{
+    setTimeout(()=>{ //cria um atraso na execução em milisegundos
         primeiraCarta.classList.remove('flip');
         segundaCarta.classList.remove('flip');
 
