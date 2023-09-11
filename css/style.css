@@ -69,9 +69,7 @@ body{
 
 .carta_jogo.flip{
     transform: rotateY(180deg);
-    
 }
-
 
 .frente_carta{
     width: 100%;
@@ -84,4 +82,34 @@ body{
 
 .frente_carta{
     transform: rotateY(180deg);
+}
+
+@media (min-width:0px) and (max-width: 768px){
+    body{
+        display: block;
+        height: 100vh;
+        margin: 32px 0px 0px 0px;
+    }
+    .placar{
+        margin: auto;
+        align-items: center;
+    }
+    .placar > h1{
+        font-size: 24px;
+    }
+    .placar > p{
+        font-size: 14px;
+    }
+    .jogo_memoria{
+        width: 320px;
+        height: 434px;
+        display: flex;
+        justify-content: center;
+        align-content: flex-start;
+    }
+    .carta_jogo{
+        margin: 2px;
+        width: calc(30% - 10px); 
+        height: calc(25% - 10px);
+    }
 }
