@@ -1,9 +1,3 @@
-// TESTANDO CONEXÃO SCRIPT
-const prompt = "OLÁ MUNDO";
-console.log(prompt);
-
-// Declarando variável que acessa uma carta do HTML
-const cartas = document.querySelectorAll('.carta_jogo');
 
 /*
     Para compreender a lógica do jogo da memória, é preciso entender esses principais
@@ -31,6 +25,10 @@ const cartas = document.querySelectorAll('.carta_jogo');
     Atualmente, é mais comumente utilizado const e let por suas características de definição e
     atualização serem mais "seguras" do que as de var.
 */ 
+
+// Declarando variável que acessa uma carta do HTML
+const cartas = document.querySelectorAll('.carta_jogo');
+
 let cartaVirou = false;
 let bloquearTabuleiro = false;
 let primeiraCarta, segundaCarta;
