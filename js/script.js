@@ -37,7 +37,7 @@ let numeroPares = 0;
 function virarCarta(){ /*Função que vira uma carta*/
 
     if (bloquearTabuleiro) return; //Impede que outra carta seja selecionada até que as outras desvirem
-    if(this === primeiraCarta) return;
+    if(this === primeiraCarta) return; //Previne duplo clique
     this.classList.add('flip');
 
     if(!cartaVirou){
