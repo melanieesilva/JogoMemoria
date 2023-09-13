@@ -1,95 +1,91 @@
-
-/*
-    Para compreender a lógica do jogo da memória, é preciso entender esses principais
-    "momentos" do jogo:
-
-    1 - Selecionar carta:
-        O jogador seleciona uma carta e algo deve acontecer após isso,
-        tanto no aspecto visual do elemento (a carta) quanto na estrutura lógica do jogo. 
-        Primeiro, a carta deve virar. Depois, outra carta precisa ser selecionada e 
-        virar da mesma forma. Mas o jogador só pode selecionar uma carta por vez, então
-        é preciso que as outras cartas sejam bloqueadas. Por último, é preciso verificar
-        se foi formado um par de cartas (se as cartas são iguais ou não);
-
-    2 - Formar pares:
-        Ao formar um par, as cartas não podem virar e precisam ser bloqueadas na sua posição
-        atual. O restante do tabuleiro, logo, deve estar livre para novas seleções.
-
-*/
-
-/*
-    Aqui começamos a definir as variáveis necessárias para o script. 
-    É válido se atentar para o tipo da variável também. const e let são utilizadas para escopo
-    de bloco (bloco pode ser entendido como "tudo aquilo" que está contido entre chaves {}), 
-    enquanto var atende um escopo global ou de função.
-    Atualmente, é mais comumente utilizado const e let por suas características de definição e
-    atualização serem mais "seguras" do que as de var.
-*/ 
-
-// Declarando variável que acessa uma carta do HTML
-const cartas = document.querySelectorAll('.carta_jogo');
-
-let cartaVirou = false;
-let bloquearTabuleiro = false;
-let primeiraCarta, segundaCarta;
-let numeroPares = 0;
-
-function virarCarta(){ /*Função que vira uma carta*/
-
-    if (bloquearTabuleiro) return; //Impede que outra carta seja selecionada até que as outras desvirem
-    if(this === primeiraCarta) return; //Previne duplo clique
-    this.classList.add('flip');
-
-    if(!cartaVirou){
-        cartaVirou = true;
-        primeiraCarta = this;
-        return;
-    }
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Jogo da Memória</title>
+</head>
+<body>
+    <div class="placar">
+        <h1>Olá, Jogador</h1>
+        <p>Número de pares encontrados: <span id="contador"></span></p>
+        <p id="vitoria"></p>
+    </div>
+    <!-- Section, ou seção, faz parte da atualização que veio com o HTML5. Essa tag indentifica uma seção do layout da sua página e é
+    mais indicado utilizá-la por boas práticas. Ao invés de utilizar apenas de "div's", principalmente para "agrupar" um conjunto de "div's",
+    use Section ou outra tag semântica que faça sentido de acordo com o layout desenvolvido, como header, aside, article e footer."-->
+    <section class="jogo_memoria">
+        <div class="carta_jogo" data-imagem="pessoa"> <!--Essa div representa uma carta dentro da nossa matriz de cartas-->
+            <!--Ela possui duas imagens, uma que será o verso da carta e outra que será a frente-->
+            <img class="frente_carta" src="./img/img_1_pessoa.jpg" alt="Ilustração colorida de um grupo de pessoas conversando"> <!--Frente-->
+            <!-- O "class" é um elemento que torna tags parte de alguma classe, um grupo, que pode ser nomeado e acessado no sua estilização 
+            CSS ou no seu script-->
+            <!--O "alt" é um atributo de acessibilidade. Ele permite que leitores de tela identifiquem o conteúdo de uma imagem para pessoas
+            com algum tipo de deficiência visual, principalmente-->
+        </div>
+        <div class="carta_jogo" data-imagem="pessoa"> <!-- O data-imagem é o atributo data-* que permite adicionar 
+            dados personalizados em um elemento no HTML-->
+            <img class="frente_carta" src="./img/img_1_pessoa.jpg" alt="Ilustração colorida de um grupo de pessoas conversando">
+        </div>
+        <div class="carta_jogo" data-imagem="maos">
+            <img class="frente_carta" src="./img/img_2_maos.jpg" alt="Ilustração colorida de uma mão segurando um celular">
+        </div>
+        <div class="carta_jogo" data-imagem="maos">
+            <img class="frente_carta" src="./img/img_2_maos.jpg" alt="Ilustração colorida de uma mão segurando um celular">
+        </div>
+        <div class="carta_jogo" data-imagem="bike">
+            <img class="frente_carta" src="./img/img_3_bike.jpg" alt="Ilustração colorida de uma pessoa pedalando">
+        </div>
+        <div class="carta_jogo" data-imagem="bike">
+            <img class="frente_carta" src="./img/img_3_bike.jpg" alt="Ilustração colorida de uma pessoa pedalando">
+        </div>
+        <div class="carta_jogo" data-imagem="natal">
+            <img class="frente_carta" src="./img/img_4_natal.jpg" alt="Ilustração colorida de pessoas ao redor de uma árvore de natal">
+        </div>
+        <div class="carta_jogo" data-imagem="natal">
+            <img class="frente_carta" src="./img/img_4_natal.jpg" alt="Ilustração colorida de pessoas ao redor de uma árvore de natal">
+        </div>
+        <div class="carta_jogo" data-imagem="pascoa">
+            <img class="frente_carta" src="./img/img_5_pascoa.jpg" alt="Ilustração colorida de uma mensagem de Feliz Páscoa em inglês">
+        </div>
+        <div class="carta_jogo" data-imagem="pascoa">
+            <img class="frente_carta" src="./img/img_5_pascoa.jpg" alt="Ilustração colorida de uma mensagem de Feliz Páscoa em inglês">
+        </div>
+        <div class="carta_jogo" data-imagem="laptop">
+            <img class="frente_carta" src="./img/img_6_laptop.jpg" alt="Ilustração colorida de uma pessoa usando um laptop">
+        </div>
+        <div class="carta_jogo" data-imagem="laptop">
+            <img class="frente_carta" src="./img/img_6_laptop.jpg" alt="Ilustração colorida de uma pessoa usando um laptop">
+        </div>
+        <div class="carta_jogo" data-imagem="lampada">
+            <img class="frente_carta" src="./img/img_7_lampada.jpg" alt="Ilustração colorida de uma garota segurando uma lâmpada">
+        </div>
+        <div class="carta_jogo" data-imagem="lampada">
+            <img class="frente_carta" src="./img/img_7_lampada.jpg" alt="Ilustração colorida de uma garota segurando uma lâmpada">
+        </div>
+        <div class="carta_jogo" data-imagem="garota">
+            <img class="frente_carta" src="./img/img_8_garota.jpg" alt="Ilustração colorida de uma garota de costas usando um laptop">
+        </div>
+        <div class="carta_jogo" data-imagem="garota">
+            <img class="frente_carta" src="./img/img_8_garota.jpg" alt="Ilustração colorida de uma garota de costas usando um laptop">
+        </div>
+        <div class="carta_jogo" data-imagem="mesa">
+            <img class="frente_carta" src="./img/img_9_mesa.jpg" alt="Ilustração colorida de uma pessoa sentada em uma mesa">
+        </div>
+        <div class="carta_jogo" data-imagem="mesa">
+            <img class="frente_carta" src="./img/img_9_mesa.jpg" alt="Ilustração colorida de uma pessoa sentada em uma mesa">
+        </div>
+        <div class="carta_jogo" data-imagem="garota_celular">
+            <img class="frente_carta" src="./img/img_10_garota.jpg" alt="Ilustração colorida de uma garota segurando um celular">
+        </div>
+        <div class="carta_jogo" data-imagem="garota_celular">
+            <img class="frente_carta" src="./img/img_10_garota.jpg" alt="Ilustração colorida de uma garota segurando um celular">
+        </div>
+    </section>    
     
-    segundaCarta = this;
-    verificarPar();
-}
-
-function verificarPar(){
-    let parCarta = primeiraCarta.dataset.imagem === segundaCarta.dataset.imagem
-    
-    parCarta ? (desativarCarta(),numeroPares++) : desvirarCarta();
-    document.getElementById("contador").textContent = numeroPares;
-
-    if(numeroPares > 9){
-        document.getElementById("vitoria").textContent = "Parabéns! Você encontrou todos os pares."
-    }else{
-        document.getElementById("vitoria").textContent = ""
-    }
-}
-
-function desativarCarta(){
-    primeiraCarta.removeEventListener('click',virarCarta);
-    segundaCarta.removeEventListener('click',virarCarta);
-
-    reiniciarTabuleiro();
-}
-
-function desvirarCarta(){
-    bloquearTabuleiro = true;
-    setTimeout(()=>{ //cria um atraso na execução em milisegundos
-        primeiraCarta.classList.remove('flip');
-        segundaCarta.classList.remove('flip');
-
-        reiniciarTabuleiro();
-    },1400)
-}
-
-function reiniciarTabuleiro(){
-    [cartaVirou,bloquearTabuleiro] = [false,false];
-    [primeiraCarta, segundaCarta] = [null,null];
-}
-
-(function embaralhar(){
-    cartas.forEach(carta => {
-        let posicaoAleatoria = Math.floor(Math.random()*20);
-        carta.style.order = posicaoAleatoria;
-    });
-})();
-
-cartas.forEach(carta => carta.addEventListener('click',virarCarta));
+    <script src="./js/script.js"></script><!-- O script deve ser conectado dentro da tag body, 
+    mas pode ser inserido na tag head, lembrando de adicionar o elemento defer antes do "src". Por que dessa forma o navegador entende
+    que deve processar todo o HTML antes de executar o script. -->
+</body>
+</html>
