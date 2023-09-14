@@ -33,6 +33,7 @@ let cartaVirou = false;
 let bloquearTabuleiro = false;
 let primeiraCarta, segundaCarta;
 let numeroPares = 0;
+let numeroErros = 0;
 
 document.body.onload = carregarCarta();
 
@@ -62,8 +63,9 @@ function virarCarta(){ /*Função que vira uma carta*/
 function verificarPar(){
     let parCarta = primeiraCarta.dataset.imagem === segundaCarta.dataset.imagem
     
-    parCarta ? (desativarCarta(),numeroPares++) : desvirarCarta();
-    document.getElementById("contador").textContent = numeroPares;
+    parCarta ? (desativarCarta(),numeroPares++) : (desvirarCarta(),numeroErros++);
+    document.getElementById("contador-pares").textContent = numeroPares;
+    document.getElementById("contador-erros").textContent = numeroErros;
 
     if(numeroPares > 9){
         document.getElementById("vitoria").textContent = "Parabéns! Você encontrou todos os pares."
